@@ -24,10 +24,10 @@ services:
       placement:
         constraints: [node.role == manager]
 
-  visualizer:
-    image: dockersamples/visualizer:stable
+  portainer:
+    image: portainer/portainer:stable
     ports:
-      - 9000:8080
+      - 9000:9000
     networks:
       - frontend
     stop_grace_period: 1m30s
