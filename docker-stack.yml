@@ -5,19 +5,21 @@ services:
     image: wordpress
     depends_on:
       - mysql:mysql
+    links:
+      - mysql:mysql
     ports:
       - 8080:80
     networks:
       - frontend
     deploy:
-      replicas: 6
+      replicas: 10
       restart_policy:
         condition: on-failure
 
   mysql:
     image: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password@123
     networks:
       - frontend
     deploy:
@@ -25,7 +27,7 @@ services:
         constraints: [node.role == manager]
 
   portainer:
-    image: portainer/portainer:stable
+    image: portainer/portainer
     ports:
       - 9000:9000
     networks:
